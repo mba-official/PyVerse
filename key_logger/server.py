@@ -5,7 +5,7 @@ import struct
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-server_address = ("192.168.56.1", 1235)
+server_address = ("192.168.100.81", 1235)
 
 print(f"Starting Server at {server_address}")
 
